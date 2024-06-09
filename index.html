@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betting Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3087084.jpg'); /* Setting the background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .highlighted {
+            box-shadow: 0 0 15px 5px #ffc107; /* Adding a more noticeable highlight */
+            border: 2px solid black; /* Black border for highlighted option */
+        }
+    </style>
+</head>
+<body class="bg-slate-200 dark:bg-gray-800 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto max-w-6xl px-12">
+        <h1 class="text-2xl font-bold text-center text-black mb-4">Bet on the Twin's Cup Size</h1>
+        
+        <!-- Updated Video Embed Section -->
+        <div class="rounded-lg shadow-lg bg-white mx-auto mb-4 p-4">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/VT5OrFgfGcM?autoplay=1&loop=1&playlist=VT5OrFgfGcM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3">
+            <!-- Option C Cup -->
+            <label class="cursor-pointer">
+                <input type="radio" class="peer sr-only" name="bet" value="C" />
+                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300 ring-2 ring-transparent transition-all hover:shadow peer-checked:bg-yellow-400 peer-checked:text-black highlighted">
+                    <div class="flex flex-col items-center">
+                        <p class="text-lg font-bold">C Cup</p>
+                        <p class="text-sm">Bet on size C</p>
+                    </div>
+                </div>
+            </label>
+
+            <!-- Option D Cup -->
+            <label class="cursor-pointer">
+                <input type="radio" class="peer sr-only" name="bet" value="D" />
+                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300 ring-2 ring-transparent transition-all hover:shadow peer-checked:bg-yellow-400 peer-checked:text-black highlighted">
+                    <div class="flex flex-col items-center">
+                        <p class="text-lg font-bold">D Cup</p>
+                        <p class="text-sm">Bet on size D</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <!-- Input for Bet Amount aligned with the buttons -->
+        <div class="flex flex-col items-center mt-4">
+            <div class="w-72 max-w-xl px-5 py-3">
+                <input type="number" placeholder="Enter your bet amount ($)" class="w-full p-3 rounded-md text-gray-800 dark:text-gray-300 bg-white dark:bg-gray-900 border-2 border-gray-500 focus:border-blue-400 focus:outline-none transition-all">
+            </div>
+
+            <!-- Elevated Buttons for Placing Bet -->
+            <div class="flex flex-wrap justify-center gap-6 mt-4">
+                <a class="relative" href="#">
+                    <span class="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
+                    <span class="font-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-yellow-400 hover:text-gray-900">Place Bet</span>
+                </a>
+                <a href="#" class="relative">
+                    <span class="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-gray-700"></span>
+                    <span class="font-bold relative inline-block h-full w-full rounded border-2 border-black bg-black px-3 py-1 text-base font-bold text-white transition duration-100 hover:bg-gray-900 hover:text-yellow-500">Confirm Bet</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
