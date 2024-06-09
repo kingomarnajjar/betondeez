@@ -7,19 +7,20 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://wallpapercave.com/wp/wp3087084.jpg'); /* Setting the background image */
+            background-image: url('https://wallpapercave.com/wp/wp3087084.jpg'); /* Background image */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: 'Courier New', Courier, monospace; /* Monospace font for the entire page */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font */
         }
         .option-box {
             transition: box-shadow 0.3s, border-color 0.3s;
-            border: 2px solid transparent; /* Default state with transparent border */
+            border: 2px solid transparent;
         }
-        .option-box.peer-checked {
-            box-shadow: 0 0 15px 5px #ffc107; /* More noticeable highlight when selected */
-            border-color: black; /* Black border only when selected */
+        .selected {
+            box-shadow: 0 0 15px 5px #ffc107; /* Bright highlight */
+            border-color: black; /* Black border */
+            background-color: #ffff99; /* Light yellow background for more visibility */
         }
         .confetti {
             position: fixed;
@@ -38,21 +39,21 @@
 </head>
 <body class="bg-slate-200 dark:bg-gray-800 flex items-center justify-center min-h-screen">
     <div class="confetti" id="celebration">
-        🎉🎊🎉🎊🎉🎊 Ooooh do you feel the edge! 🎉🎊🎉🎊🎉🎊
+        🎉🎊🎉🎊🎉🎊 Hooray! 🎉🎊🎉🎊🎉🎊
     </div>
     <div class="container mx-auto max-w-6xl px-12">
         <h1 class="text-2xl font-bold text-center text-black mb-4">Bet on the Twin's Cup Size</h1>
         
-        <!-- Updated Video Embed Section -->
+        <!-- Video Embed Section -->
         <div class="rounded-lg shadow-lg bg-white mx-auto mb-4 p-4">
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/VT5OrFgfGcM?autoplay=1&loop=1&playlist=VT5OrFgfGcM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class="flex flex-wrap justify-center gap-3">
             <!-- Option C Cup -->
-            <label class="cursor-pointer">
+            <label class="cursor-pointer option-box" onclick="selectOption(this)">
                 <input type="radio" class="peer sr-only" name="bet" value="C" />
-                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300 ring-2 ring-transparent option-box peer-checked">
+                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300">
                     <div class="flex flex-col items-center">
                         <p class="text-lg font-bold">C Cup</p>
                         <p class="text-sm">Bet on size C</p>
@@ -61,9 +62,9 @@
             </label>
 
             <!-- Option D Cup -->
-            <label class="cursor-pointer">
+            <label class="cursor-pointer option-box" onclick="selectOption(this)">
                 <input type="radio" class="peer sr-only" name="bet" value="D" />
-                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300 ring-2 ring-transparent option-box peer-checked">
+                <div class="w-72 max-w-xl rounded-md bg-white dark:bg-gray-900 p-5 text-gray-600 dark:text-gray-300">
                     <div class="flex flex-col items-center">
                         <p class="text-lg font-bold">D Cup</p>
                         <p class="text-sm">Bet on size D</p>
@@ -72,13 +73,13 @@
             </label>
         </div>
 
-        <!-- Input for Bet Amount aligned with the buttons -->
+        <!-- Bet Amount Input -->
         <div class="flex flex-col items-center mt-4">
             <div class="w-72 max-w-xl px-5 py-3">
                 <input type="number" placeholder="Enter your bet amount ($)" class="w-full p-3 rounded-md text-gray-800 dark:text-gray-300 bg-white dark:bg-gray-900 border-2 border-gray-500 focus:border-blue-400 focus:outline-none transition-all">
             </div>
 
-            <!-- Elevated Buttons for Placing Bet -->
+            <!-- Betting Buttons -->
             <div class="flex flex-wrap justify-center gap-6 mt-4">
                 <a class="relative" href="#" onclick="celebrate()">
                     <span class="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
@@ -95,10 +96,19 @@
     <script>
         function celebrate() {
             const celebrationDiv = document.getElementById('celebration');
-            celebrationDiv.style.display = 'flex'; // Show the confetti and Hooray text
+            celebrationDiv.style.display = 'flex';
             setTimeout(function() {
-                celebrationDiv.style.display = 'none'; // Hide after 5 seconds
+                celebrationDiv.style.display = 'none';
             }, 5000);
+        }
+
+        function selectOption(selectedLabel) {
+            // Remove 'selected' from all other labels
+            document.querySelectorAll('.option-box').forEach(box => {
+                box.classList.remove('selected');
+            });
+            // Add 'selected' to the clicked label
+            selectedLabel.classList.add('selected');
         }
     </script>
 </body>
