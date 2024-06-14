@@ -22,22 +22,24 @@ html, body {
     display: flex;
     justify-content: center;
 }
-#odds {
+#oddsBar {
     width: calc(100% - 4rem);
     height: 1.5rem;
     display: flex;
     gap: 0.5rem;
     margin: auto;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
+    align-items: center;
 }
-#odds > div {
+#oddsBar > div {
     height: 100%;
     font-size: 1.3rem;
     display: flex;
     align-items: center;
     transition: width 0.5s ease;
     padding: 0 1rem;
-    border-radius: 0.5rem
+    border-radius: 0.5rem;
+    justify-content: space-between;
 }
 #team1 {
     background: blue;
@@ -55,9 +57,13 @@ html, body {
     <h1>Instinct</h1>
     <button>Profile</button>
 </div>
-<div id="odds">
-    <div id="team1" style="width: 50%">Team 1</div>
-    <div id="team2" style="width: 50%">Team 2</div>
+<div id="oddsBar">
+    <div id="team1" style="width: 50%"><span>Team 1</span><span>Win Payout: $<span id="team1payout">0</span></span></div>
+    <div style="display:flex;flex-flow:wrap-reverse;align-content:center;justify-content:center">
+        <span id="odds">1:1</span>
+        <span id="amountBet">$0</span>
+    </div>
+    <div id="team2" style="width: 50%"><span>Team 2</span><span>Win Payout: $<span id="team2payout">0</span></span></div>
 </div>
 <div id="main">
     <div id="stream"></div>
@@ -66,16 +72,39 @@ html, body {
     <button onclick="bet('team1')">Team 1</button>
     <button onclick="bet('team2')">Team 2</button>
 </div>
+<h2 style="margin: 0 2rem">Your Bets</h2>
+<div id="yourBets" style="margin: 0 2rem"></div>
 <script>
 var team1bets = 1;
 var team2bets = 1;
+var team1winPayout = 0;
+var team2winPayout = 0;
+var dollarsBet = 0;
 function bet(team){
+    dollarsBet += 1;
+    document.getElementById('amountBet').innerHTML = '$' + dollarsBet;
     if(team == 'team1')
         team1bets += 1;
     else
         team2bets += 1;
+
     const totalBets = team1bets + team2bets;
+    const team1Odds = Math.round(10 * (1 / (team1bets / totalBets)))/10;
+    const team2Odds = Math.round(10 * (1 / (team2bets / totalBets)))/10;
+
+    if(team == 'team1'){
+        document.getElementById('yourBets').innerHTML += team1Odds + ' Team 1<br>';
+        team1winPayout += team1Odds;
+        document.getElementById('team1payout').innerText = Math.round(team1winPayout*100)/100;
+    }else if(team == 'team2'){
+        document.getElementById('yourBets').innerHTML += team2Odds + ' Team 2<br>';
+        team2winPayout += team2Odds;
+        document.getElementById('team2payout').innerText = Math.round(team2winPayout*100)/100;
+    }
+
     document.getElementById('team1').style.width = 100*team1bets/totalBets+"%"
-    document.getElementById('team2').style.width = 100*team2bets/totalBets+"%"
+    document.getElementById('team2').style.width = 100*team2bets/totalBets+"%";;
+
+    document.getElementById('odds').innerText = team1Odds === team2Odds ? '1:1' : team1Odds + ":" + team2Odds;
 }
 </script>
