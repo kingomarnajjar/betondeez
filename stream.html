@@ -1,0 +1,81 @@
+<style>
+html, body {
+    background: black;
+    color: white;
+    margin: 0;
+    padding: 0
+}
+#banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem
+}
+#banner > button {
+    background: white;
+    border: none;
+    color: black;
+    height: fit-content;
+    font-size: 1.5rem;
+}
+#main {
+    display: flex;
+    justify-content: center;
+}
+#odds {
+    width: calc(100% - 4rem);
+    height: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+    margin-bottom: 1rem
+}
+#odds > div {
+    height: 100%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    transition: width 0.5s ease;
+    padding: 0 1rem;
+    border-radius: 0.5rem
+}
+#team1 {
+    background: blue;
+}
+#team2 {
+    background: red;
+}
+#stream {
+    width: calc(100vw - 4rem);
+    background: red;
+    height: 60vh
+}
+</style>
+<div id="banner">
+    <h1>Instinct</h1>
+    <button>Profile</button>
+</div>
+<div id="odds">
+    <div id="team1" style="width: 50%">Team 1</div>
+    <div id="team2" style="width: 50%">Team 2</div>
+</div>
+<div id="main">
+    <div id="stream"></div>
+</div>
+<div style="display: flex; justify-content: space-between; margin: 2rem">
+    <button onclick="bet('team1')">Team 1</button>
+    <button onclick="bet('team2')">Team 2</button>
+</div>
+<script>
+var team1bets = 1;
+var team2bets = 1;
+function bet(team){
+    if(team == 'team1')
+        team1bets += 1;
+    else
+        team2bets += 1;
+    const totalBets = team1bets + team2bets;
+    document.getElementById('team1').style.width = 100*team1bets/totalBets+"%"
+    document.getElementById('team2').style.width = 100*team2bets/totalBets+"%"
+}
+</script>
